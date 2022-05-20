@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
+import { Table } from './components/table';
+import buildings from './components/data/buildings.json';
+import cells from './components/data/cells.json';
 
 function App() {
+
+  const buildingData = useMemo(() => buildings, [buildings]);
+  const cellData = useMemo(() => cells, [cells]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {buildingData && <Table buildingData={buildingData} cellData={cellData} />}
     </div>
   );
 }
